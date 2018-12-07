@@ -13839,14 +13839,14 @@ $search.on("keyup paste change", (event) => {
         let name = product.name.toLowerCase();
         return name.includes(search);
     });
-    model.currentPage = 1;
-    processPage(filteredproducts, model.currentPage);
+    currentPage = 1;
+    processPage(filteredproducts, currentPage);
 });
 
 $("#clear-list").on("click", (ev) => {
     ev.preventDefault();
     $search.val("");
-    model.currentPage = 1;
+    currentPage = 1;
     processPage(model.products, model.currentPage);
 });
 
@@ -13911,7 +13911,7 @@ function subscribeList() {
 }
 
 
-function createPagination(products, currentPage) {
+function createPagination(productList, currentPage) {
     function createPaginationItem(num) {
         let itemClass = "page-link num-link";
         if (num === currentPage) {
@@ -13925,7 +13925,7 @@ function createPagination(products, currentPage) {
     const $pagContainer = $(".pagination");
 
     let $listPagination = $();
-    const totalPage = getMaxPage(model.products);
+    const totalPage = getMaxPage(productList);
     for (let i = 1; i <= totalPage; i++) {
         const $itemPagination = createPaginationItem(i);
         $listPagination = $listPagination.add($itemPagination);
@@ -13935,7 +13935,7 @@ function createPagination(products, currentPage) {
     $(".page-link").click(ev => {
         ev.preventDefault();
         currentPage = +ev.target.innerText;
-        processPage(products, currentPage);
+        processPage(productList, currentPage);
     });
 }
 
@@ -13960,7 +13960,7 @@ $(function () {
             600: {
                 items: 3
             },
-            1000: {
+            1200: {
                 items: 4
             }
         }
